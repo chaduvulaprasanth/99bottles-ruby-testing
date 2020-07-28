@@ -4,104 +4,106 @@ require_relative '../lib/bottles'
 
 
 class BottlesTest < MiniTest::Test
-  def test_the_whole_song
-    expected = <<~SONG
-      99 bottles of the beer on the wall, 99 bottles of beer.
-      Take one down and pass it around , 98 bottles of beer on the wall.
+  # def test_the_whole_song
+  #   expected = <<~SONG
+  #     99 bottles of beer on the wall, 99 bottles of beer.
+  #     Take one down and pass it around , 98 bottles of beer on the wall.
 
-      98 bottles of the beer on the wall,98 bottles of beer.
-      Take one down and pass it around , 97 bottles of beer on the wall.
+  #     No more bottles of beer on the wall, no more bottles of beer.
+  #     Go to the store and buy some more, 99 bottles of beer on the wall.
+  #   SONG
+  #   assert_equal expected, Bottles.new.song
+  # end
 
-      97 bottles of the beer on the wall, 97 bottles of beer.
-      Take one down and pass it around , 96 bottles of beer on the wall.
-
-      # ...
-
-      4 bottles of the beer on the wall, 4 bottles of beer.
-      Take one down and pass it around , 3 bottles of beer on the wall.
-
-      3 bottles of the beer on the wall, 3 bottles of beer.
-      Take one down and pass it around , 2 bottles of beer on the wall.
-
-      2 bottles of the beer on the wall, 2 bottles of beer.
-      Take one down and pass it around , 1 bottle of beer on the wall.
-
-      1 bottle of the beer on the wall, 1 bottle of beer.
-      Take it down and pass it around , no more bottles of beer on the wall.
-
-      No more bottles of the beer on the wall, no more bottles of beer.
-      Go to the store and buy some more, 99 bottles of beer on the wall.
-    SONG
-  end
   def test_the_first_verse
     expected =
-      "99 bottles of the beer on the wall, " + 
+      "99 bottles of beer on the wall, " + 
       "99 bottles of beer.\n" +   
       "Take one down and pass it around , " + 
       "98 bottles of beer on the wall.\n"
     assert_equal expected, Bottles.new.verse(99)
   end
+
   def test_another_verse
     expected = 
-      "3 bottles of the beer on the wall, " + 
+      "3 bottles of beer on the wall, " + 
       "3 bottles of beer.\n" +   
       "Take one down and pass it around , " + 
       "2 bottles of beer on the wall.\n"
     assert_equal expected, Bottles.new.verse(3)
   end
+
   def test_verse_2
     expected = 
-      "2 bottles of the beer on the wall, " + 
+      "2 bottles of beer on the wall, " + 
       "2 bottles of beer.\n" +   
       "Take one down and pass it around , " + 
       "1 bottle of beer on the wall.\n"
     assert_equal expected, Bottles.new.verse(2)
   end
+
   def test_verse_1
     expected = 
-      "1 bottle of the beer on the wall, " + 
+      "1 bottle of beer on the wall, " + 
       "1 bottle of beer.\n" +   
       "Take it down and pass it around , " + 
       "no more bottles of beer on the wall.\n"
       assert_equal expected, Bottles.new.verse(1)
   end
+
   def test_verse_0
     expected = 
-      "No more bottles of the beer on the wall, " + 
+      "No more bottles of beer on the wall, " + 
       "no more bottles of beer.\n" +   
       "Go to the store and buy some more, " + 
       "99 bottles of beer on the wall.\n"
     assert_equal expected, Bottles.new.verse(0)
   end
+
   def test_a_couple_verses
     expected =
-      "99 bottles of the beer on the wall, " + 
+      "99 bottles of beer on the wall, " + 
       "99 bottles of beer.\n" +   
       "Take one down and pass it around , " + 
       "98 bottles of beer on the wall.\n" +
       "\n" +
-      "98 bottles of the beer on the wall, " + 
+      "98 bottles of beer on the wall, " + 
       "98 bottles of beer.\n" +   
       "Take one down and pass it around , " + 
       "97 bottles of beer on the wall.\n" 
     assert_equal expected, Bottles.new.verses(99,98)
   end
+
   def test_a_few_verses
     expected = 
-      "2 bottles of the beer on the wall, " + 
+      "2 bottles of beer on the wall, " + 
       "2 bottles of beer.\n" +   
       "Take one down and pass it around , " + 
       "1 bottle of beer on the wall.\n" +
       "\n" +
-      "1 bottle of the beer on the wall, " + 
+      "1 bottle of beer on the wall, " + 
       "1 bottle of beer.\n" +   
       "Take it down and pass it around , " + 
       "no more bottles of beer on the wall.\n" +
       "\n" +
-      "No more bottles of the beer on the wall, " + 
+      "No more bottles of beer on the wall, " + 
       "no more bottles of beer.\n" +   
       "Go to the store and buy some more, " + 
       "99 bottles of beer on the wall.\n"
     assert_equal expected, Bottles.new.verses(2,0)
+  end
+
+  def test_six_pack
+    expected = 
+      "7 bottles of beer on the wall, " + 
+      "7 bottles of beer.\n" +   
+      "Take one down and pass it around , " + 
+      "1 six-pack of beer on the wall.\n" +
+      "\n" +
+      "1 six-pack of beer on the wall, " + 
+      "1 six-pack of beer.\n" +   
+      "Take one down and pass it around , " + 
+      "5 bottles of beer on the wall.\n"
+    assert_equal expected, Bottles.new.verses(7,6)
   end
 end
