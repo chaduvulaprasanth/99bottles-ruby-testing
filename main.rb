@@ -65,12 +65,15 @@ end
 
 
 class ChildrenClass < ParentClass
-  
+  def self.for
+   "self"
+  end
 end
 
 # make an instance 
 # parent_class = ParentClass.new
-children_class = ChildrenClass.new
+children_class = ChildrenClass.new().class
+
 
 # output is 
 # I got ChildrenClass inherited from ParentClass
